@@ -20,16 +20,19 @@ parser = argparse.ArgumentParser("Script to train model the SNN using supervised
 
 parser.add_argument(
     "--datafile",
+    type=str,
     required=True,
     help="Path to the .npy file containing the speech data",
 )
 parser.add_argument(
     "--outdir",
+    type=str,
     default="output",
     help="Name of folder where all the ouput files (membrane potentials etc) should be stored. Folder doesn't need to exist beforehand. (default = output)",
 )
 parser.add_argument(
     "--n_samples",
+    type=int,
     default=1,
     help="Number of samples in the dataset for which the network should be simulated. (default=1)",
 )
