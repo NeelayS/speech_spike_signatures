@@ -32,7 +32,7 @@ Example arguments -
 
 `python preprocess.py --data_dir FSDD/recordings --data_file data --upper_bound 52000.0 --lower_bound 52.0`
 
-<br/><br/>
+<br/>
 
 ### `train.py`
 
