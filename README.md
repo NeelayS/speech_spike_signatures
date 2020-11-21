@@ -2,7 +2,7 @@
 
 Implementation of the paper [A Spiking Network that Learns to Extract Spike Signatures from Speech Signals](https://arxiv.org/abs/1606.00802)
 
-## Steps -
+## Steps 
 
 1. Install [PyGeNN](https://github.com/genn-team/genn/tree/master/pygenn).
 2. Install dependencies in `requirements.txt`.
@@ -32,6 +32,7 @@ Example arguments -
 
 `python preprocess.py --data_dir FSDD/recordings --data_file data --upper_bound 52000.0 --lower_bound 52.0`
 
+<br/><br/>
 
 ### `train.py`
 
