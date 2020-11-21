@@ -1,22 +1,19 @@
-import matplotlib.pyplot as plt
 import librosa
 from librosa import display
 import os
 import scipy
 import numpy as np
-import json
-
-data_root = "data/FSDD/recordings"
-lower_bound = 52.0
-upper_bound = 10000.0
 
 
 class Dataset:
-    def __init__(self, root_dir):
-        self.root_dir = root_dir
+    def __init__(self, data_dir, upper_bound, lower_bound):
+        self.data_dir = data_dir
+        self.upper_bound = upper_bound
+        self.lower_bound = lower_bound
         self.data = []
 
     # Preprocessing each speech signal
+
     def _frame(self, samples, sample_rate, window_ms):
         stride_ms = window_ms / 2
         stride_size = int(0.001 * sample_rate * stride_ms)
@@ -36,6 +33,7 @@ class Dataset:
         )
 
         # Window weighting, squared Fast Fourier Transform (fft), scaling
+
         weighting = np.hanning(window_size)[:, None]
 
         fft = np.fft.fft(windows * weighting, axis=0)
@@ -47,6 +45,7 @@ class Dataset:
         fft = np.log(fft)
 
         # Prepare fft frequency list
+
         freqs = float(sample_rate) / window_size * np.arange(fft.shape[0])
 
         frames = []
@@ -83,7 +82,7 @@ class Dataset:
     def preprocess(self):
         N = 40
         overlap = 0.5
-        for file in os.listdir(self.root_dir):
+        for file in os.listdir(self.data_dir):
             samples, sampling_rate = librosa.load(
                 os.path.join(data_root, file),
                 sr=None,
@@ -99,17 +98,50 @@ class Dataset:
         self.data = np.array(self.data).reshape(1500, 200)
 
         # Normalisation between [lower_bound, upper_bound]
+
         for index in range(self.data.shape[0]):
 
             min_v = np.min(self.data[index])
             max_v = np.max(self.data[index])
             self.data[index] -= min_v
             self.data[index] /= max_v - min_v
-            self.data[index] *= upper_bound - lower_bound
-            self.data[index] += lower_bound
+            self.data[index] *= self.upper_bound - self.lower_bound
+            self.data[index] += self.lower_bound
 
 
-dataset = Dataset(data_root)
-dataset.preprocess()
-np.save("data", dataset.data)
-print(dataset.data.max(), dataset.data.min())
+if __name__ == "__main__":
+
+    import argparse
+
+    parser = argparse.ArgumentParser("Script to pre-preocess the speech data")
+
+    parser.add_argument(
+        "--data_dir",
+        type=str,
+        required=True,
+        help="Should point to the the folder containing all the audio .wav files",
+    )
+    parser.add_argument(
+        "--data_file",
+        type=str,
+        default="data",
+        help="Name of the .npy file the pre-processed should be saved as",
+    )
+    parser.add_argument(
+        "--upper_bound",
+        type=float,
+        default=52000.0,
+        help="The upper bound of for sacling the feature extracted from the speech signal",
+    )
+    parser.add_argument(
+        "--lower_bound",
+        type=float,
+        default=10000.0,
+        help="The lower bound of for sacling the feature extracted from the speech signal",
+    )
+
+    args = parser.parse_args()
+
+    dataset = Dataset(args.data_dir, args.upper_bound, args.lower_bound)
+    dataset.preprocess()
+    np.save(args.data_file, dataset.data)
