@@ -7,8 +7,8 @@ Implementation of the paper [A Spiking Network that Learns to Extract Spike Sign
 1. Install [PyGeNN](https://github.com/genn-team/genn/tree/master/pygenn).
 2. Install dependencies in `requirements.txt`.
 3. Download and extract the [Free Spoken Digit Dataset (FSDD)](https://github.com/Jakobovski/free-spoken-digit-dataset).
-4. Run `scripts/preprocess.py` to pre-process the data and extract features from it.
-5. Run `scripts/train.py` to simulate (train) the spiking neural network (SNN).
+4. Run `src/preprocess.py` to pre-process the data and extract features from it.
+5. Run `src/train.py` to simulate (train) the spiking neural network (SNN).
 
 ## Usage
 
