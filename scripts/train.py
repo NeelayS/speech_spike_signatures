@@ -39,7 +39,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-# Define custom neuron class
+# Define custom Izhikevich neuron class
 
 izk_neuron = create_custom_neuron_class(
     "izk_neuron",
