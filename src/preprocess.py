@@ -131,13 +131,13 @@ if __name__ == "__main__":
         "--upper_bound",
         type=float,
         default=52000.0,
-        help="The upper bound of for sacling the feature extracted from the speech signal",
+        help="The upper bound of for scaling the feature extracted from the speech signal",
     )
     parser.add_argument(
         "--lower_bound",
         type=float,
         default=10000.0,
-        help="The lower bound of for sacling the feature extracted from the speech signal",
+        help="The lower bound of for scaling the feature extracted from the speech signal",
     )
 
     args = parser.parse_args()
