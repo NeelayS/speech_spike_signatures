@@ -45,7 +45,7 @@ required arguments:
   --datafile DATAFILE        Path to the .npy file containing the speech data
 
 optional arguments:
-  --outdir OUTDIR            Name of folder where all the ouput files (membrane potentials etc) should be stored. Folder doesn't need to exist beforehand. (default = output)
+  --outdir OUTDIR            Name of folder where all the ouput files (membrane potentials etc) should be stored. Folder doesn't need to exist beforehand. (default='output')
   --n_samples N_SAMPLES      Number of samples in the dataset for which the network should be simulated. (default=1)
 ```
 
