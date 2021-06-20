@@ -1,6 +1,6 @@
 # speech_spike_signatures
 
-Implementation of the paper [A Spiking Network that Learns to Extract Spike Signatures from Speech Signals](https://arxiv.org/abs/1606.00802)
+Implementation of the paper [A Spiking Network that Learns to Extract Spike Signatures from Speech Signals](https://arxiv.org/abs/1606.00802) in PyGeNN: A Python Library for GPU-Enhanced Neural Networks
 
 ## Steps 
 
