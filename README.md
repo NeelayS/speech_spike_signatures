@@ -24,8 +24,8 @@ required arguments:
 
 optional arguments:
   --data_file DATA_FILE       Name of the .npy file the pre-processed should be saved as (default='data')
-  --upper_bound UPPER_BOUND   The upper bound of for sacling the feature extracted from the speech signal (default=52000.0)
-  --lower_bound LOWER_BOUND   The lower bound of for sacling the feature extracted from the speech signal (default=52.0)
+  --upper_bound UPPER_BOUND   The upper bound of for scaling the feature extracted from the speech signal (default=52000.0)
+  --lower_bound LOWER_BOUND   The lower bound of for scaling the feature extracted from the speech signal (default=52.0)
 ```
 
 Example arguments -
